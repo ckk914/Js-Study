@@ -15,6 +15,7 @@ console.log('메롱'&& 'ㅈㄹ'); //ㅈㄹ 출력 :마지막 true인 것 출력
 console.log(0 &&'룰루랄라');
 
 
+//실무 사용 예시
 //if(조건 참){
 //console.log('blah blah');
 //}
