@@ -23,3 +23,23 @@ if(tvxq.includes(ChangeMember)) tvxq.splice(tvxq.indexOf(ChangeMember),1,newMemb
 alert(`team 재결성🎉\n ${tvxq}`);
 
   
+//다른 방법 ▼▼▼▼
+
+// var tvxq = ['유노윤호', '최강창민', '영웅재중', '믹키유천', '시아준수'];
+
+// while (true) {
+//   var modifyTarget = prompt(`현재 멤버: [${tvxq}]\n수정할 이름을 입력하세요.`);
+
+//   var idx = tvxq.indexOf(modifyTarget);
+
+//   if (idx !== -1) {
+//     // 수정 타겟이 있는경우 -> 수정 진행
+//     var newName = prompt('새로운 이름을 입력하세요!');
+//     tvxq[idx] = newName;
+//     alert(`수정 완료!\n남은 멤버: [${tvxq}]`);
+//     break;
+//   } else {
+//     // 없는 경우
+//     alert(`${modifyTarget}은(는) 잘못된 이름입니다.\n다시 입력하세요!`);
+//   }
+// }
