@@ -14,6 +14,8 @@ function isEven(num)
 {
   if(num%2===0) return true;
   else return false;
+  // return n%2===0;
+   //논리식이라 리턴 true, false 알아서 나오게할 수 있다!
 }
 
 //result에는 56이 리턴되어야 함.
