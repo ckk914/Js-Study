@@ -44,8 +44,8 @@ const array = [
   true,
   [],
   {},
-  add,
-  multiply,
+  add,         //함수
+  multiply,  //함수
   function () {
     console.log("a");
   },
