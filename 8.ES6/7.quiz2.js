@@ -37,9 +37,10 @@ const userList = [
   },
 ];
 
-//min search
+//min 
 function min(userList,condition){
-  let minValue = userList[0][condition];
+  // let minValue = userList[0][condition];
+  let minValue = userList[0]; //초기값 0번방꺼 넣음.
   // console.log(minValue);
   for(const a of userList){
     if(minValue>a[condition]) minValue=a[condition];
@@ -50,15 +51,16 @@ return minValue;
 function find(condition){
   // const findArray = [];
   // console.log(condition(user));
-for(const a of userList){
-  if(condition(a)) return a;
+for(const user of userList){
+  if(condition(user)) return user;
 }
+return null; 
 }
 // some
 function some(condition){
   const filteredArray = [];
-  for(const a of userList){
-    if(condition(a)) return true;  //있는지 검사
+  for(const user of userList){
+    if(condition(user)) return true;  //있는지 검사
     // if(condition(a)) filteredArray.push(a); //맞는 값 반환하기.
   }
   return false;
