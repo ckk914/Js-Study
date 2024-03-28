@@ -191,22 +191,7 @@ console.log(cityTransactionCount);
 
 //10. **거래액을 기준으로 모든 거래를 오름차순으로 정렬한 후, 정렬된 리스트를 출력해주세요.
 // 각 거래 정보는 거래자 이름, 도시, 연도, 거래액을 포함해야 합니다.**
-// const users = [
-//   { name: '홍길동', age: 40 },
-//   { name: '임꺽정', age: 12 },
-//   { name: '주몽', age: 23 },
-//   { name: '척준경', age: 88 },
-// ];
-// 나이순 오름차순 정렬
-// const ageAscending = users.sort((a, b) => a.age - b.age);
-// 나이순 내림차순 정렬
-// const ageDescending = users.sort((a, b) => b.age - a.age);
-// // 이름순 오름차순 정렬
-// const nameAscending = users.sort((a, b) => a.name.localeCompare(b.name));
-// traders.sort(trs=> (a,b)=>a.value-b.value);
-console.log(traders);
 
-// value 기준 오름차순 정렬
-traders.sort((a, b) => a.value - b.value);
 
-console.log(traders);
+const priceFromLow = traders.sort((a, b) => a.value - b.value);
+console.log(priceFromLow);
