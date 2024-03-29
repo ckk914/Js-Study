@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+          <head>
+                    <meta charset="UTF-8" />
+                    <meta
+                              name="viewport"
+                              content="width=device-width, initial-scale=1.0"
+                    />
+                    <title>Document</title>
+          </head>
+          <body>
+                    <ul id="fruits">
+                              <li class="f-item">사과</li>
+                              <li class="f-item">딸기</li>
+                              <li class="f-item">뀰</li>
+                              <li class="f-item">바나나</li>
+                    </ul>
+                    <script>
+                              //최상단 부모는 document
+                              //  console.log(document);
+                              console.log(
+                                        document.documentElement
+                              ); //html 지칭
+                              const html =
+                                        document.documentElement;
+                              html.classList.add(`my-html`); //html에 클래스 추가
+
+                              console.log(html.children[1]); //html 자식에 접근  (body 접근!)
+                              const body = document.body; // html.children[1];
+                              body.style.background = `gray`; //바디로 접근 가능
+                              body.style.color = `white`;
+                    </script>
+          </body>
+</html>
