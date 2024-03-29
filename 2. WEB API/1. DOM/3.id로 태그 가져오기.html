@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+          <head>
+                    <meta charset="UTF-8" />
+                    <meta
+                              name="viewport"
+                              content="width=device-width, initial-scale=1.0"
+                    />
+                    <title>Document</title>
+          </head>
+          <body>
+                    <ul id="fruits">
+                              <li id="apple" class="f-item">사과</li>
+                              <li id="ddalgi" class="f-item">딸기</li>
+                              <li id="orange" class="f-item">뀰</li>
+                              <li id="banana" class="f-item">바나나</li>
+                              <li id="peach" class="f-item">복숭아</li>
+                              <li id="grape" class="f-item">포도</li>
+                    </ul>
+                    <script>
+                              // 관례적으로 붙인다 달러
+                              // 앞에 달러가 들어가면 태그가 들어갔구나 하면 됨.
+                              // getElementById의 태그를 지정해서 가져온다.
+                              const $banana = document.getElementById(`banana`);
+                              console.log($banana.textContent);
+                              $banana.textContent = `빠나나`;
+                              $banana.pet = `바나나 원숭이🐵`;
+
+                              const $peach = document.getElementById(`peach`);
+                              $peach.style[`font-style`] = `italic`; 
+
+                              //id가 grape인 요소 노드 객체를 취득하여
+                              // 배경색상 조작을 통해 violet 색으로 조작하세요~
+                              const $grape = document.getElementById(`grape`);
+                              
+                              // # 자바스크립트는 특수문자 허용을 안해서 , 실행해서 개발자 도구 가면 element 에 fontStyle 로 나옴
+                              //  $grape.style[`background-color`] = `violet`;
+                              $grape.style[`backgroundColor`] = `violet`; 
+                              $grape.style[`width`] = `fit-content`;
+                              $grape.style[`color`] = `green`;
+                    </script>
+          </body>
+</html>
