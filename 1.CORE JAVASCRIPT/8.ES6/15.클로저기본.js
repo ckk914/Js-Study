@@ -64,7 +64,7 @@ const h = bar()();
 // const count = increase(); //계속 1
 
 //클로저를 통해 지역변수의 스코프를 늘려줄 수 있다.
-const increaseClosure = () =>{             //낭비성 호출임... 1번만 하기엔
+const increaseClosure = () =>{             // 1번만 호출 하기엔 낭비성 호출임...
   let count = 0;                                       // 지역변수
 
   const helper = () => ++count;
