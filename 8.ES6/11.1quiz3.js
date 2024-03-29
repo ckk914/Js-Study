@@ -198,7 +198,7 @@ const BusanAllUserNameArray = [];
 const BusanAllUserNameSearch = traders.filter(trd => trd.trader.city === `부산`)
   .forEach(trd => BusanAllUserNameArray.push(trd.trader.name));
 //출력
-  // console.log(BusanAllUserNameArray);
+// console.log(BusanAllUserNameArray);
 /////////////고차함수
 // const nameListInBusan = traders
 //   .filter(trs => trs.trader.city === '부산')
@@ -321,48 +321,60 @@ console.log('=============================');
 //5. **거래액이 700000원 이상인 거래를 모두 찾아, 해당 거래의 연도별로 분류해주세요. 
 // 결과는 `{2022: [...거래정보], 2023: [...거래정보]}`와 같은 형태가 되어야 합니다.**
 console.log('5==================');
+// const trsOver700KByYear = {};
+/* trsOver700KByYear[`2022`] = [
+  {
+    trader = {},
+    year: 2022,
+}
+] 
+*/
 const traderHistory = traders
-  .filter(trs => trs.value >= 700000)
-  .map(trs => ({
-    year: trs.year,
-    money: trs.value,
-  }));
-console.log(traderHistory);
-//6. **각 거래자별로 그들이 진행한 거래의 평균 거래액을 계산해주세요.
-// 결과는 `{거래자이름: 평균거래액}` 형태의 객체가 되어야 합니다.**
+//풀이 1  for
+// for (const trs of traders) {     //거래액 필터 조건
+//   const yearString = trs.year.toString();
+//   if (trs.value >= 700000) {
+//     if (!trsOver700KByYear[yearString]) { //거래 년도가 저장 안됐을때 //없으면 false이고 반전해서 실행! 
+//       trsOver700KByYear[yearString] = [trs];
+//     }
+//     else {  // 지금 거래 년도가 저장되어 있으면,
+//       trsOver700KByYear[yearString].push(trs);
+//     }
+//   }
+// }
 
-const mappedName2 = [...new Set(traders.map(trs => trs.trader.name))];
-console.log(mappedName2);
-const AverageArray = [];
-const n1 = [];
-
-
-for (const count in mappedName2) {
-  let total = 0;
-  mappedUsera = traders.filter(trs => trs.trader.name === mappedName2[count]);
-  console.log(mappedUsera);
-
-  mappedUsera.filter(trs => trs.value)
-    .forEach(trs => total += trs.value);
-  console.log(count);
-};
-console.log(n1);
-
-// .reduce((total, trs) => total + trs.value, 0);
-
-//
-// console.log(AverageArray);
-// for(of )
-
-// console.log(mappedUsera);
-
-//7. **2022년과 2023년 각각에서 가장 많은 거래를 한 거래자의 이름과 그 거래 횟수를 출력해주세요.**
-
-//8. **모든 거래 중 거래액이 중간값인 거래의 정보(거래자 이름, 도시, 연도, 거래액)를 출력해주세요.**
-
-//9. **각 도시에서 진행된 거래의 수를 계산해주세요.
-//결과는 `{도시이름: 거래수}` 형태의 객체여야 합니다.**
-
-//10. **거래액을 기준으로 모든 거래를 오름차순으로 정렬한 후, 정렬된 리스트를 출력해주세요.
-// 각 거래 정보는 거래자 이름, 도시, 연도, 거래액을 포함해야 합니다.**
-
+//풀이 2 for each
+// traders.forEach(trs => {
+//   const yearString = trs.year.toString();
+//   if (trs.value >= 700000) {
+//     if (!trsOver700KByYear[yearString]) { //거래 년도가 저장 안됐을때 //없으면 false이고 반전해서 실행! 
+//       trsOver700KByYear[yearString] = [trs];
+//     }
+//     else {  // 지금 거래 년도가 저장되어 있으면,
+//       trsOver700KByYear[yearString].push(trs);
+//     }
+//   }
+// });
+//풀이 3 reduce
+const trsOver700KByYear = traders.
+filter(trs => trs.value >=700000)
+.reduce((transactions, trs)=>{
+const yearString = trs.year.toString();
+if(!transactions[yearString])transactions[yearString] = [trs];  //없으면 배열 생성
+else transactions[yearString].push(trs);
+  return transactions;
+},{})              //마지막 빈객체는 넣어줄 객체 같은 의미? 초기값 : 객체
+console.log('========5.출력===========');
+console.log('2022년,2023년 정리!');
+console.log(trsOver700KByYear);
+console.log('========================');
+//json 형식 변환 방법
+// console.log(JSON.stringify(trsOver700KByYear,null,2));
+//<=======================
+// const traderHistory = traders
+//   .filter(trs => trs.value >= 700000)
+//   .map(trs => ({
+//     year: trs.year,
+//     money: trs.value,
+//   }));
+// console.log(traderHistory);
