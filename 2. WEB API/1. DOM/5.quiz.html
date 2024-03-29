@@ -24,14 +24,20 @@
             //1. id="list1"인 요소에 <li> 요소중
             //    홀수번째 요소만 선택후 배경색상 yellow 적용
             // id="list1"인 요소의 자식 중 홀수번째 <li> 요소만 선택하여 배경색을 yellow로 적용
-            const $list1 = [...document.querySelectorAll('#list1 > li')];
+                const $list1 = [...document.querySelectorAll('#list1 li')];
+                // 또다른방법1
+                // const $list1 = [...document.querySelectorAll('#list1 li:nth-child(odd)')];
+                // 또다른 방법2
+            // $list1.filter(($li, i )=> i%2 ===0)
+            //  .forEach($li=> $li.style.backgroundColor = `yellow`);
+
             for (let i = 0; i < $list1.length; i++) {
                 if (i % 2 === 0) {
                     // 0부터 시작하므로 실제로는 홀수번째 요소가 됩니다.
                     $list1[i].style.backgroundColor = 'yellow';
                 }
             }
-
+         
             //2. id="list1"인 요소에 <li> 요소중
             //   짝수번째 요소만 선택후 배경색상 gray 적용
             for (let i = 0; i < $list1.length; i++) {
@@ -40,12 +46,18 @@
                     $list1[i].style.backgroundColor = 'Gray';
                 }
             }
+            //또다른방법
+             // $list1.filter(($li, i )=> i%2 ===1)
+            //  .forEach($li=> $li.style.backgroundColor = `gray`);
             //3. id="list1"인 요소에 <li> 요소중
             //  첫번째 <li>요소만 선택후 폰트색상 red 적용
             $list1[0].style.color = `red`;
+            const [$first, $second, ...$otherItems] = $list1;
+            $first.style.color = `red`;
             //4. id="list1"인 요소에 <li> 요소중
             //   마지막번째 <li>요소만 선택후 폰트색상 green 적용
             $list1[$list1.length - 1].style.color = `green`;
+            
             //5. id="list1"인 요소에 <li> 요소중
             // 두번째 <li>요소만 선택후 font-style: italic 적용
             $list1[1].style.fontStyle = `italic`;
@@ -54,11 +66,15 @@
             for (let i = 0; i < 2; i++) {
                 $list1[i].style.border = `2px dotted aqua`;
             }
+            // [$first,$second].forEach($li => $li.style.border = `2px dotted aqua`);
             //7. id="list1"인 요소에 <li> 요소중  3번째 이후요소만 선택후
             //   border 2px dashed violet 적용 (3번째부터 끝까지 선택)
             for (let i = 2; i < $list1.length; i++) {
                 $list1[i].style.border = `2px dashed violet`;
             }
+
+            // const $list-test = document.querySelector(`#list1>li`):nth-child(1);
+            // $list-test.style.Color = `blue`;
         </script>
     </body>
 </html>
