@@ -199,9 +199,33 @@ console.log('7===================================================7');
 //============================================================
 //다른 풀이1 
 //============================================================
-const result = traders.reduce((acc, trs) => {
+// const result = traders.reduce((acc, trs) => {
+//   // 연도별 거래자 거래 횟수 집계
+//   const key = `${trs.year}_${trs.trader.name}`;
+
+//   if (!acc[key]) {
+//     acc[key] = 1;
+//   } else {
+//     acc[key]++;
+//   }
+//   // 연도별 최대 거래 횟수 찾기
+//   const yearMaxKey = `max_${trs.year}`;
+//   if (!acc[yearMaxKey] || acc[key] > acc[yearMaxKey].count) {
+//     acc[yearMaxKey] = { name: trs.trader.name, count: acc[key] }
+//   }
+//   return acc;
+// }, {});
+
+// console.log(result);
+// // 결과 출력
+// console.log(`2022년 가장 많은 거래를 한 거래자: ${result.max_2022.name}, 거래 횟수: ${result.max_2022.count}`);
+// console.log(`2023년 가장 많은 거래를 한 거래자: ${result.max_2023.name}, 거래 횟수: ${result.max_2023.count}`);
+////////////////
+// 다른 풀이 1간략화 - 디스트럭쳐링 적용
+const result = traders.reduce((acc, { trader, year }) => {
+  const { name } = trader;
   // 연도별 거래자 거래 횟수 집계
-  const key = `${trs.year}_${trs.trader.name}`;
+  const key = `${year}_${name}`;
 
   if (!acc[key]) {
     acc[key] = 1;
@@ -209,36 +233,78 @@ const result = traders.reduce((acc, trs) => {
     acc[key]++;
   }
   // 연도별 최대 거래 횟수 찾기
-  const yearMaxKey = `max_${trs.year}`;
+  const yearMaxKey = `max_${year}`;
   if (!acc[yearMaxKey] || acc[key] > acc[yearMaxKey].count) {
-    acc[yearMaxKey] = { name: trs.trader.name, count: acc[key] }
+    acc[yearMaxKey] = { name, count: acc[key] };
   }
   return acc;
 }, {});
 
 console.log(result);
 // 결과 출력
-console.log(`2022년 가장 많은 거래를 한 거래자: ${result.max_2022.name}, 거래 횟수: ${result.max_2022.count}`);
-console.log(`2023년 가장 많은 거래를 한 거래자: ${result.max_2023.name}, 거래 횟수: ${result.max_2023.count}`);
+console.log(
+  `2022년 가장 많은 거래를 한 거래자: ${result.max_2022.name}, 거래 횟수: ${result.max_2022.count}`
+);
+console.log(
+  `2023년 가장 많은 거래를 한 거래자: ${result.max_2023.name}, 거래 횟수: ${result.max_2023.count}`
+);
 
 //8. **모든 거래 중 거래액이 중간값인 거래의 정보(거래자 이름, 도시, 연도, 거래액)를 출력해주세요.**
-let max = traders[0].value;
-let min = traders[0].value;
+//풀었던 내용
+// let max = traders[0].value;
+// let min = traders[0].value;
+// // console.log(max);
+// traders.map(trs => trs.value < min ? min = trs.value : min = min);
+// traders.map(trs => trs.value > max ? max = trs.value : max = max);
+// console.log(min);
 // console.log(max);
-traders.map(trs => trs.value < min ? min = trs.value : min = min);
-traders.map(trs => trs.value > max ? max = trs.value : max = max);
-console.log(min);
-console.log(max);
-const centerData = (min + max) / 2;
-console.log(centerData);
-const centerUser = traders.filter(trs => trs.value === centerData).map(trs => ({
-  name: trs.trader.name,
-  city: trs.trader.city,
-  year: trs.year,
-  value: trs.value,
-}))
-  .forEach(result => console.log(`우리의~중간 유저님 거래 정보(${result.name},${result.city},${result.year},${result.value})`));
+// const centerData = (min + max) / 2;
+// console.log(centerData);
+// const centerUser = traders.filter(trs => trs.value === centerData).map(trs => ({
+//   name: trs.trader.name,
+//   city: trs.trader.city,
+//   year: trs.year,
+//   value: trs.value,
+// }))
+//   .forEach(result => console.log(`우리의~중간 유저님 거래 정보(${result.name},${result.city},${result.year},${result.value})`));
 
+
+//거래액 오름차순 정렬
+//정렬은 원본을 손상시킴! = 안전하게 하려면 복사 후 정렬
+
+//중간값 정보 찾기
+
+//배열의 요소 수가 홀수면 괜찮음
+//                         짝수면 중앙 두값의 평균을 중간값으로 한다.
+// 거래액 오름차로 정렬
+// 정렬은 원본을 손상시킴 - 안전하게 하려면 복사 후 정렬
+console.log('-=============================');
+const sortedTraders = traders.slice().sort((a, b) => a.value - b.value);
+// console.log(sortedTraders);
+
+// 중간값 거래 정보 찾기
+
+// 배열의 요소 수가 홀수면 정확한 중간인덱스가 나오는데 
+// 짝수면 중앙 두 값의 평균을 중간값으로 한다.
+
+// 가운데 인덱스 찾기
+const middleIndex = Math.floor(sortedTraders.length / 2);
+
+let middleTradeInfo;
+if (sortedTraders.length % 2 === 1) { // 배열의 요소 수가 홀수인 경우
+  // 정확한 중간 인덱스를 지정
+  middleTradeInfo = sortedTraders[middleIndex];
+} else { // 짝수인 경우
+  middleTradeInfo = [
+    sortedTraders[middleIndex - 1], 
+    sortedTraders[middleIndex]
+  ];
+}
+console.log(middleTradeInfo);
+
+// console.log(middleTradeInfo);
+
+//============================================================
 //9. **각 도시에서 진행된 거래의 수를 계산해주세요.
 //결과는 `{도시이름: 거래수}` 형태의 객체여야 합니다.**
 // const mappedName = [...new Set(traders.map(trs => trs.trader.name))];
@@ -262,22 +328,48 @@ const centerUser = traders.filter(trs => trs.value === centerData).map(trs => ({
 //   citiesTrsArray.push(trd); // 평균 배열에 추가합니다.
 // }
 ///////////////////
-const cities = [...new Set(traders.map(trs => trs.trader.city))]; const cityTransactionCount = {};
-for (let city of cities) {
-  let cnt = 0;
-  traders.forEach(trs => {
-    if (trs.trader.city === city) {
-      cnt++;
-    }
-  });
-  cityTransactionCount[city] = cnt;
-}
-console.log(cityTransactionCount);
+// const trsCountByCity = traders.reduce((total,trs)=>{
+// if(!total[trs.trader.city]){
+//   total[trs.trader.city] =1;
+// }
+// else{
+//   total[trs.trader.city]++;
+// }
+// return total;
+// },{});
+// console.log(trsCountByCity);
+///////////////////////////////////////////////////////////////
+//줄여쓴 답
+/////////////////////////////////////////////////////////////////
+onsole.log('==============================');
+
+const trsCountByCity = traders.reduce((acc, { trader }) => {
+  const { city } = trader;
+  if (!acc[city]) {
+    acc[city] = 1;
+  } else {
+    acc[city]++;
+  }
+  return acc;
+}, {});
+console.log(trsCountByCity);
+//원래 답
+// const cities = [...new Set(traders.map(trs => trs.trader.city))]; const cityTransactionCount = {};
+// for (let city of cities) {
+//   let cnt = 0;
+//   traders.forEach(trs => {
+//     if (trs.trader.city === city) {
+//       cnt++;
+//     }
+//   });
+//   cityTransactionCount[city] = cnt;
+// }
+// console.log(cityTransactionCount);
 
 
 //10. **거래액을 기준으로 모든 거래를 오름차순으로 정렬한 후, 정렬된 리스트를 출력해주세요.
 // 각 거래 정보는 거래자 이름, 도시, 연도, 거래액을 포함해야 합니다.**
 
 
-const priceFromLow = traders.sort((a, b) => a.value - b.value);
+const priceFromLow = traders.slice().sort((a, b) => a.value - b.value);
 console.log(priceFromLow);
