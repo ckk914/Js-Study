@@ -78,7 +78,7 @@ console.log(firstHobbyList);
 // 모든 회원의 이름과 게정을 연결해서 배열에 담아줘
 // map(user => `${user.userName}(${user.account})`);
 // console.log(nameIdList);
-//★★ 조건이 두개 이상이면 `` 를 써야함
+//★★ 조건이 두개 이상이면 `` 를 써서 묶어야함.
 const myCustomList = map(user => `${user.userName}(${user.account})`);
 console.log(myCustomList);
 
