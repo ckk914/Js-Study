@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+          <head>
+                    <meta charset="UTF-8" />
+                    <meta
+                              name="viewport"
+                              content="width=device-width, initial-scale=1.0"
+                    />
+                    <title>Document</title>
+          </head>
+          <body>
+                    <ul id="fruits">
+                              <li class="f-item ap">사과</li>
+                              <li  class="f-item dd">딸기</li>
+                              <li  class="f-item">뀰</li>
+                              <li  class="f-item bn">바나나</li>
+                              <li class="f-item pc">복숭아</li>
+                              <li class="f-item gp">포도</li>
+                    </ul>
+                    <script>
+                      //클래스니까 . 붙여야됨
+                      //선택자 써서 잡아올 수 있다. 
+                      // 잡아서 컨트롤할 수 있다.
+                      //선택자 ->  querySelector
+                       //                클래스 여러개일 경우 
+                      //                처음 만난 애가 적용 된다!! f-item 쓸 경우...
+                    //                 만족하는 요소가 없으면 null 반환
+                    //                 무조건 1개만 가져온다.
+                    // const $grape = document.querySelector(`&&f-item`);
+                    // const $grape = document.querySelector(`.gp`);
+                    // const $grape = document.querySelector(`#fruit li:nth-child(4)`); //포도
+                    // const $grape = document.querySelector(`.pc + li`); //포도
+                    const $grape = document.querySelector(`.pc + li`); //포도
+                  //  get
+                    // console.log($grape);
+                    $grape.textContent ='포도2✨';
+
+                    // const $fitemList = document.querySelectorAll(`.f-item`);
+                    //진짜 배열로 바꿔버리기.
+                    //대부분 진짜 배열로 바꾸면 좋음!
+                    const $fitemList = [...document.querySelectorAll(`.f-item`)];
+                    console.log($fitemList);
+
+
+                    // for (const $f of $fitemList){
+                    //   $f.style.color = `red`;
+                    // }
+                    //이렇게 할거면 css 로 그냥 해라.
+                    //자바스크립트로 할때는 뭐클릭할때 바뀌게 할때 하면 됨...
+                    $fitemList.forEach($f=> {
+                      $f.style.color = `blue`;
+                    });
+                     
+                    //배열인줄 알았는데 
+                    // 사실 배열이 아니고  (짝퉁임.)=> 노드리스트임.
+                    // 가짜 배열 (유사배열 Array Like)
+                    //                     ㄴ 객체 형태를 유지한 배열
+                    // $fitemList.pop();  //에러
+
+                    const foods={
+                      0: `짜장면`,
+                      1: `짬뽕`,
+                      2: `볶음밥`,
+                    length:3,
+                    age:30,
+                    }
+console.log(foods[0]);
+console.log(foods.length);
+console.log(foods.age);
+                    </script>
+          </body>
+</html>
