@@ -35,7 +35,14 @@
                     // console.log($grape);
                     $grape.textContent ='포도2✨';
 
+
+   //배열인줄 알았는데 
+                    // 사실 배열이 아니고  (짝퉁임.)=> 노드리스트임.
+                    // 가짜 배열 (유사배열 Array Like)
+                    //                     ㄴ 객체 형태를 유지한 배열
+                    // $fitemList.pop();  //에러
                     // const $fitemList = document.querySelectorAll(`.f-item`);
+//<-----------------------------                    
                     //진짜 배열로 바꿔버리기.
                     //대부분 진짜 배열로 바꾸면 좋음!
                     const $fitemList = [...document.querySelectorAll(`.f-item`)];
@@ -51,11 +58,6 @@
                       $f.style.color = `blue`;
                     });
                      
-                    //배열인줄 알았는데 
-                    // 사실 배열이 아니고  (짝퉁임.)=> 노드리스트임.
-                    // 가짜 배열 (유사배열 Array Like)
-                    //                     ㄴ 객체 형태를 유지한 배열
-                    // $fitemList.pop();  //에러
 
                     const foods={
                       0: `짜장면`,
