@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .highlight{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="greet">
+    hello <span class="highlight">world</span>
+  </div>
+  <ul id="food-list">
+    <li class="food">짜장면</li>
+    <li class="food">파스타</li>
+    <li class="food">볶음밥</li>
+  </ul>
+  <script>
+    const $greet = document.getElementById(`greet`);
+    console.log($greet.textContent.trim()); // trim 공백제거
+
+    // $greet.textContent = `안녕 자바스크립트!`;   //이걸로 밀어 넣으면, 기존 span 날라감!
+    $greet.innerHTML = `안녕 <span class = "highlight">자바스크립트!</span>`; 
+    $greet.querySelector(`.highlight`).textContent = `javascript !`;
+
+    const $foodList = document.getElementById(`food-list`);
+
+    // $foodList.innerHTML = `<div>메롱</div>`; //기존꺼 날라가고 , 이게 들어감.
+    $foodList.innerHTML += `<li class="food">짬뽕</li>`; //기존꺼에 자식 추가
+
+    //자식 태그 전체 삭제
+    $foodList.innerHTML = ``; 
+
+    const foods = [`치킨`,`초밥`,`망고`,`딸기`];
+   
+    foods.forEach(f=> {
+      $foodList.innerHTML += `
+      <li class="food">${f}</li>
+      `;
+    })
+
+  </script>
+</body>
+</html>
