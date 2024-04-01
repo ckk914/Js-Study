@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="email" id="account" value="abc@def.com">
+  <script>
+
+    const $input = document.querySelector(`input`);
+    // console.log($input.attributes[0]);  //type 접근
+    console.log($input.attributes.type.value);  //type 접근
+    //속성 조작하기 (속성값 변경)
+    // $input.attributes.type.value = `range`;  //타입 변경하기
+
+    $input.attributes.id.value = `acc`;
+    $input.attributes.value.value = `abc@naver.com`;
+
+    // $input.attributes.title.value= `hahao`;
+
+
+  </script>
+</body>
+</html>
