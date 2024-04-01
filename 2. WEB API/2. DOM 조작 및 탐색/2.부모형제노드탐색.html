@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div class="wrap">
+    <ul id="fruits">
+      <li class="fr apple">사과</li>
+      <li class="fr banana">바나나</li>
+      <li class="fr grape">포도</li>
+    </ul>
+  </div>
+
+ <div id="wrapper">
+    <section class="contents">
+        <ul class="list">
+            <li class="item"><a href="#" class="link">10</a></li>
+            <li class="item"><a href="#" class="link active">20</a></li>
+            <li class="item"><a href="#" class="link">30</a></li>
+        </ul>
+        <ul class="list">
+            <li class="item"><a href="#" class="link">40</a></li>
+            <li class="item"><a href="#" class="link">50</a></li>
+            <li class="item"><a href="#" class="link">60</a></li>
+        </ul>
+    </section>
+ </div>
+  <script>
+    const $ul = document.getElementById('fruits');
+
+    const $wrap = $ul.parentElement;
+    $wrap.style.background = 'orange';
+    $wrap.style.height = '100px';
+    $wrap.style.padding = '10px';
+
+    const [$apple, $banana, $grape]
+      // = [...$wrap.firstElementChild.children];
+      = [...document.querySelectorAll('.fr')];
+//    console.log();
+    $grape.style.color = 'violet';
+   console.log($banana.nextElementSibling ===$grape);
+   console.log($apple.nextElementSibling.nextElementSibling ===$grape);
+  
+const $active = document.querySelector(`.active`);
+console.log($active
+                    .parentElement.
+                    parentElement.
+                    nextElementSibling
+                    .lastElementChild
+                    .firstElementChild);
+
+                    //기준 태그로 부터 위로 올라가면서 탐색하는 함수
+                   // closest(`css selector`);
+                  const $contentSect = $active.closest(`section.contents`);   //섹션을 잡아옴.
+                  console.log($contentSect);
+
+                  //아래방향 탐색?
+                  const $found = 
+                  $contentSect.querySelector(`ul.list:nth-child(2)`)
+                  .querySelector(`li.item:last-child`);   //$contentSect부터 탐색을 출발함!
+
+                  console.log($found);
+  </script>
+</body>
+
+</html>
