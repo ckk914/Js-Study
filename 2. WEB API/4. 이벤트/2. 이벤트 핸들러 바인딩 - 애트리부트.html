@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box{
+      width: 100px;
+      height: 100px;
+      background: orange;
+      margin: 20px;
+    }
+    .green{
+      background: yellowgreen;
+      font-size: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .red{
+      background: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="box" onmouseleave="boxClickHandler()" onmouseover="makeTextHandler()"></div>
+  <div class="box green" ondblclick="makeTextHandler()"></div>
+  <div class="box red" onmouseover="growHandler()"></div>
+
+  <script>
+    //✨이벤트 핸들러: 브라우저에서 일어나는 
+    //이벤트에 대해 해야할 일을 함수로 만드는 것
+    // 접미사를 붙여서 작명하는게 관례
+   function boxClickHandler(){
+ alert(`오렌지색 박스를 클릭!`);
+   }
+
+   const growHandler = function(){
+   const $redBox = document.querySelector(`.red`);
+   $redBox.style.width= `200px`;
+   };
+
+   const makeTextHandler = () => {
+    const $greenBox = document.querySelector(`.green`);
+    $greenBox.textContent = `하이`;
+   }
+  </script>
+</body>
+</html>
