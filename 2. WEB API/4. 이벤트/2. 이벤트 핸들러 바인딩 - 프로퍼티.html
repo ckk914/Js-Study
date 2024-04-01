@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    button{
+
+    }
+  </style>
+</head>
+<body>
+  <div><button id="b1">클릭1</button></div>
+  <div><button id="b2">클릭2</button></div>
+  <div><button id="b3">클릭3</button></div>
+<script>
+  //이벤트 핸들러 
+  function sayHelloHandler(){
+    alert(`hello`);
+    return 1;
+  }
+
+  const $b1 = document.getElementById(`b1`);
+  $b1.onclick= sayHelloHandler;
+
+  const $b2 = document.getElementById(`b2`);
+  $b2.onmouseover= () => {
+    $b2.style.width = `150px`;
+  };
+
+  const $b3 = document.getElementById(`b3`);
+  $b3.onmouseover= () => {
+    $b3.style.background = `aqua`;
+  };
+
+  $b3.onmouseleave = () =>{    
+    $b3.style.background = `pink`;
+  };
+  
+
+  // 이벤트 핸들러 제거
+setTimeout(()=>{
+  alert(`메롱`);
+},2000); //2000밀리초 ==2초
+  $b3.onmouseleave = null;
+
+</script>
+</body>
+</html>
