@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul id="fruits">
+    <li>사과</li>
+  </ul>
+  <script>
+    //태그 이름과 텍스트를 전달받으면 태그를 생성하는 함수(별도 생성)
+    function makeNewTag(tagName=`div`,options={}){
+      const $newTag = document.createElement(tagName);
+      if(options.text) $newTag.textContent = options.text;
+      return $newTag;
+    }
+
+    //태그를 추가해주는 함수(별도 생성)
+    function append($parent, tagName,options){
+      $parent.appendChild(makeNewTag(tagName, options));
+    }
+    const $ul = document.getElementById(`fruits`);
+    append($ul,`li`, {text:`바나나`, classname: ``,id:``});
+    append($ul,`li`, {text:`망고`});
+    append($ul,`li`, {text:`오렌지`});
+    append($ul,`a` {text:`에이`});
+    // //태그 생성
+    // const $newLi = document.createElement(`li`); //<li></li>
+    // console.log($newLi);
+
+    // //텍스트 추가하기
+    // $newLi.textContent = `바나나`;
+    // console.log($newLi);
+
+    // //ul에 자식노드로 붙이기
+    //  //부모.appendChild()
+    //  const $ul = document.getElementById(`fruits`);
+    //  $ul.appendChild($newLi); //맨 마지막 위치에 추가됨.
+
+  </script>
+</body>
+</html>
