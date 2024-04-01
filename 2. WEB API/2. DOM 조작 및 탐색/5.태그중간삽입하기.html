@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul id="fruits">
+    <li>사과</li>
+    <li>바나나</li>
+    <li>ㅍㄷ</li>
+  </ul>
+  <script>
+const $fruits = document.getElementById(`fruits`);
+const [$apple,$banana,$grape] = [...$fruits.children];
+const $newLi = document.createElement(`li`);
+$newLi.textContent=`망고`;
+$fruits.appendChild($newLi); //포도 다음으로
+// $fruits.appendChild($newLi); //포도 다음으로
+
+//중간 삽입 : insertBefore(newNode, referenceNode)  
+//                                         newNode를 refrence노드 전에 삽입
+// $fruits.insertBefore($newLi,$grape); //포도 이전 
+// $fruits.insertBefore($newLi,$fruits.firstElementChild); //맨앞
+$fruits.insertBefore($newLi,document.querySelector(`li:nth-child(2)`)); // 바나나 전
+
+//-------------------------------------------------
+//노드 이동
+$fruits.appendChild($apple); //기존꺼를 appendChild를 하면 자리를 옮김!
+// $fruits.insertBefore($banana, $newLi); //바나나를 새로운 li 앞으로! 
+$fruits.insertBefore($banana, null); //null을 옵션 주면 맨뒤로 감
+
+
+  </script>
+</body>
+</html>
