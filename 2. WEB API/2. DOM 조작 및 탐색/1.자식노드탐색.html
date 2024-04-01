@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <ul id="fruits">
+            <li class="fr apple">ㅇㅍ</li>
+            <li class="fr banana">ㅂㄴㄴ</li>
+            <li class="fr grape">포도</li>
+        </ul>
+        <div class="box"> 
+          <p></p>
+        </div>
+        <script>
+            const $ul = document.getElementById(`fruits`); // getElementById는 아이디 찾는거라 #을 안쓴다!
+            
+
+            // const $children = [...$ul.children];
+            const $first = $ul.firstElementChild;
+            console.log($first);
+
+            $first.style.fontSize = `2em`;
+
+            const $last = $ul.lastElementChild;
+            $last.style.color = `blue`;
+            $last.style.fontSize = `26px`;
+
+            const $box = document.querySelector(`.box`);
+            console.log($box.children);
+            // console.log(`자식 있니?=>` +$box.hasChildNodes());  //자식 있는지 검사
+            console.log(hasChildren($box));
+
+            function hasChildren($tag){  //공백은 자식으로 안보고, 진짜 자식 검사.
+              // return $tag.children.length > 0;
+              return !!$tag.children.length;  //논리로 바꿔줌. 0이면 false 0보다 크면 true
+            }
+        </script>
+    </body>
+</html>
