@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="container"><button id="btn">클릭하센요</button></div>
+
+        <script>
+          const $container = document.getElementById(`container`);
+          const $btn = document.getElementById(`btn`);
+
+          $container.addEventListener(`click`, e =>{
+            alert(`컨테이너에서 이벤트가 감지되.`);
+          },true); //addEventListener에 세번쨰 인자로 true를 주면 캠쳐링 활성화
+          //캡쳐링 : 부모꺼부터 호출 되고 , 그 다음 버튼 
+          $btn.addEventListener(`click`, e =>{
+            alert(`버튼에서 이벤트가 감지되.`);
+          });
+
+        </script>
+    </body>
+</html>
