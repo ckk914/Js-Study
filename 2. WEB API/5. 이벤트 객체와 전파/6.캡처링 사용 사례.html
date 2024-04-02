@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      visibility: hidden;
+      /* 기본적으로 숨김 */
+    }
+
+    .modal-overlay:not(.hidden) {
+      visibility: visible;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 까만박스  바깥-->
+  <div id="modalOverlay" class="modal-overlay hidden">
+    <!-- 하얀 박스 안쪽 (만들어서 숨겨둠)-->
+    <div class="modal-content"> 
+      <p>모달 내용입니다. 모달이 열린 상태에서 페이지의 다른 부분을 클릭할 수 없습니다.</p>
+      <button id="closeModal">모달 닫기</button>
+    </div>
+  </div>
+  <button id="openModal">모달 열기</button>
+
+  <script>
+    // 모달 열기 버튼
+    const openModalButton = document.getElementById('openModal');
+    // 모달 닫기 버튼
+    const closeModalButton = document.getElementById('closeModal');
+    // 모달 오버레이 (창 외곽 까만 부분)
+    const modalOverlay = document.getElementById('modalOverlay');
+
+    // 모달 열기 이벤트 핸들러
+    openModalButton.addEventListener('click', () => {
+      e.stopPropagation();
+      modalOverlay.classList.remove('hidden');
+    });
+
+    // 모달 닫기 이벤트 핸들러
+    document.addEventListener('click', () => {
+  
+    // closeModalButton.addEventListener('click', () => {
+      modalOverlay.classList.add('hidden');
+    },true);
+
+    // 모달이 열린 상태에서의 클릭 이벤트 관리 (이벤트 캡처링 사용)
+    document.addEventListener('click', (event) => {
+      // 모달이 열려 있고, 클릭된 요소가 모달 외부인 경우
+      if (!modalOverlay.classList.contains('hidden') && !modalOverlay.contains(event.target)) {
+        modalOverlay.classList.add('hidden'); // 모달 닫기
+      }
+    }, true); // 이벤트 캡처링 활성화
+
+  </script>
+
+</body>
+
+</html>
