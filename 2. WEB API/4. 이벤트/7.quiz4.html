@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    input{
+      width: 300px;
+    }
+  </style>
+</head>
+<body>
+  <!-- input change이벤트 -->
+  <!-- onchange 한글자 입력할때마다 이벤트발생
+ -->
+ <input class="colorInput" type="text" placeholder ="색상 이름 또는 HEX 코드 입력하세요.">
+ <div id="warning" style="color: red; display: none;">유효하지 않은 색상입니다!</div>
+ <script>
+  const $input = document.querySelector(`.colorInput`);
+  const $body = document.body;
+//        
+  $input.addEventListener("input", InputChange);
+function InputChange(e){
+  console.log("onchange", e.target.value);
+ $body.style.background= e.target.value;
+if (document.body.style.background !== $input.value || $input.value === '') {
+        $warning.style.display = 'block';
+      } else {
+        $warning.style.display = 'none';
+      }
+}
+
+//새것
+    // const $input = document.getElementById('colorInput');
+    // const $warning = document.getElementById('warning');
+
+    // $input.addEventListener('input', () => {
+    //   // console.log($input.value);
+
+    //   document.body.style.background = $input.value;
+
+    //   // 입력값이 이상하다? 
+    //   if (document.body.style.background !== $input.value || $input.value === '') {
+    //     $warning.style.display = 'block';
+    //   } else {
+    //     $warning.style.display = 'none';
+    //   }
+    // });
+  </script>
+
+</body>
+</html>
