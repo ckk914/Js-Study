@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>밀리초 단위 타이머 예제</title>
+</head>
+<body>
+    <h1>밀리초 단위 타이머 예제</h1>
+    <button id="startButton">시작</button>
+    <button id="stopButton">정지</button>
+    <p>시간: <span id="timer">0</span> 초</p>
+
+    <script>
+        let timerId;         //✨인터벌 타이머 객체를 저장
+        let startTime;    //
+
+        document.getElementById('startButton').addEventListener('click', function() {
+            if (timerId) {  //✨연타 방지 코드
+                return; // 이미 타이머가 실행 중인 경우 중복 시작 방지
+            }
+            startTime = new Date(); // 시작 시간 기록
+
+            timerId = setInterval(function() {
+                const now = new Date();
+                const elapsedTime = now - startTime; // 경과 시간 계산
+                document.getElementById('timer').textContent = elapsedTime / 1000; // 밀리초 단위로 표시
+            }, 1); // 가능한 가장 짧은 간격으로 설정
+        });
+
+        document.getElementById('stopButton').addEventListener('click', function() {
+            clearInterval(timerId); // 타이머 정지 [✨클리어 인터벌로 정지!]
+            timerId = null; // 타이머 ID 초기화
+
+            const now = new Date();
+            const elapsedTime = now - startTime; // 정지 시간 계산
+            console.log(`타이머가 ${elapsedTime}밀리초에서 정지되었습니다.`);
+        });
+    </script>
+</body>
+</html>
