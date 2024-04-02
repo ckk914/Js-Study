@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p class="msg"></p>
+  <p id="clock"></p>
+  <script>
+    const $msg   = document.querySelector(`.msg`);
+    const $clock = document.getElementById(`clock`);
+
+    //현재 시간 가져오기
+    // console.log(now.toLocaleTimeString());
+    //✨무한 루프용 으로 사용 -> 시계 찍기
+    setInterval(()=>{
+  const now = new Date();
+  $clock.textContent = now.toLocaleTimeString();
+},1000)
+    
+
+    //✨비동기로 알아서 돈다~!
+//     setInterval(()=>{
+// $msg.textContent += `안녕\n`;
+//     },2000);
+   //비동기 함수 도는 동안, 이미 다 찍힘
+    for(let i = 0; i<5; i++){
+      console.log(i);
+    }
+  </script>
+</body>
+</html>
