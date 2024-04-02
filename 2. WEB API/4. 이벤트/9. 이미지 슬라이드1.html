@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f5f5f5;
+    }
+
+    #slider {
+      display: flex;
+      align-items: center;
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    #slider img {
+      max-width: 400px;
+      max-height: 300px;
+      display: block;
+      object-fit: cover;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    button:focus {
+      outline: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="slider">
+    <button id="prev">이전</button>
+    <img id="image" src="https://blog.kakaocdn.net/dn/dN4uhe/btr8xWDwbrK/5YjBrelhtJwU2BAcLtEVoK/img.jpg"
+      style="width: 400px; height: auto;">
+    <button id="next">다음</button>
+  </div>
+
+  <script>
+    // 이미지 경로를 저장할 배열
+    const images = [
+      'https://blog.kakaocdn.net/dn/dN4uhe/btr8xWDwbrK/5YjBrelhtJwU2BAcLtEVoK/img.jpg',
+      "https://img.koreanairdfs.com/upload/prd/542/20190917114040414002.png",
+      "https://www.sisajournal.com/news/photo/202108/222572_131065_5150.jpg",
+      'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D'
+    ];
+
+    let currentIndex = 0; // 현재 이미지 위치
+
+    // 이전, 다음 버튼 클릭 이벤트
+    const [$prev, $img, $next]
+      = [...document.getElementById('slider').children];
+
+    $next.addEventListener('click', () => {
+      // 현재 내가 보고 있는 이미지가 배열의 0번 인덱스라면
+      // 다음버튼을 누르면 1번을 보여줘야 한다.
+      currentIndex = (currentIndex + 1) % images.length;
+      $img.setAttribute('src', images[currentIndex]);
+    });
+
+    $prev.addEventListener('click', () => {
+
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+
+      // currentIndex--;
+      // if (currentIndex < 0) {
+      //   (currentIndex = images.length - 1);
+      // }
+
+      $img.setAttribute('src', images[currentIndex]);
+    });
+  </script>
+</body>
+
+</html>
