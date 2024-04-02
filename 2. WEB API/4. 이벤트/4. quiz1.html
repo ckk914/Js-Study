@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .disAppear{
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <button id="hider">텍스트 숨기기!!</button>
+    <div class="text">안녕하세요~~</div>
+    <script>
+//버튼을 클릭하면 div태그가 숨겨지도록 
+    //이벤트 핸들러를 구현하세요.
+    //힌트) css의 display: none; 사용 
+    // $button = document.getElementById(`hider`);
+    // $div = document.querySelector(`.text`);
+
+    // $button.addEventListener(`click`,FoldOpen);
+
+    // function FoldOpen(){
+    //   if($button.textContent==`텍스트 숨기기!!`){
+    //     // alert('숨기기네');
+    //     // $box.classList.add(`circle`,`bbb`,`ccc`);
+    //     $div.classList.toggle(`disAppear`);
+        
+    //   } 
+
+    // }
+    const $btn = document.getElementById('hider');
+    const $textBox = document.querySelector('.text');
+
+    $btn.addEventListener('click', () => {
+      const CLASS_NAME = 'disappear';
+      if ($textBox.classList.contains(CLASS_NAME)) {
+        $textBox.classList.remove(CLASS_NAME)
+        $btn.textContent = '텍스트 숨기기!';
+      } else {
+        $textBox.classList.add(CLASS_NAME);
+        $btn.textContent = '텍스트 보이기!';
+      }
+    });
+
+    </script>
+    
+</body>
+</html>
