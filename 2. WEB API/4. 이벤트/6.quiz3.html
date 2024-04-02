@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+  .dropdown {
+    width: fit-content;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .dropdown .btn {
+    padding: 10px 40px;
+    font-size: 20px;
+    background: brown;
+    color: wheat;
+  }
+
+  #drop-content {
+    display: none;
+    position: absolute;
+    z-index: 99;
+  }
+
+  #drop-content a {
+    display: block;
+    font-size: 20px;
+    background: #dfdfdf;
+    color: black;
+    text-decoration: none;
+    padding: 10px 36px;
+    margin-top: 2px;
+  }
+
+  #drop-content a:hover {
+    background: rgb(61, 60, 60);
+    color: #fff;
+  }
+</style>
+</head>
+<body>
+  <div class="dropdown">
+    <button class="btn">Drop</button>
+    <div id="drop-content">
+        <a href='#'>Menu1</a>
+        <a href='#'>Menu2</a>
+        <a href='#'>Menu3</a>
+        <a href='#'>Menu4</a>
+        <a href='#'>Menu5</a>
+    </div>
+    
+</div>
+<script>
+  // 마우스 오버
+  // 마우스 리브 사용할 것!
+  $btn = document.querySelector(`.dropdown`);
+  $btn.addEventListener(`mouseover`,MenuOpen);
+  $btn.addEventListener(`mouseleave`,MenuFold);
+  $div = document.getElementById(`drop-content`);
+
+function MenuOpen(){
+  $div.style.display = `block`;
+}
+function MenuFold(){
+  $div.style.display = `none`;
+}
+
+</script>
+</body>
+</html>
