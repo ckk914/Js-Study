@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Basics</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+
+  <script src="js/vender.js" defer></script>
+  <script src="js/app.js" defer></script>
+  
+</head>
+
+<body>
+  <header>
+    <h1>The Calculator</h1>
+  </header>
+
+  <section class="card" id="calculator">
+    <input type="number" id="input-number" />
+    <div id="calc-actions">
+      <button type="button" id="btn-add">+</button>
+      <button type="button" id="btn-subtract">-</button>
+      <button type="button" id="btn-multiply">*</button>
+      <button type="button" id="btn-divide">/</button>
+    </div>
+  </section>
+
+  <section class="card" id="results">
+    <h2 id="current-calculation">0</h2>
+    <h2>Result: <span id="current-result">0</span></h2>
+  </section>
+
+  <section class="card" id="logs">
+    <ul class="log-entries"></ul>
+  </section>
+
+
+</body>
+
+</html>
