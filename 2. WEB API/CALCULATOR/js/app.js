@@ -6,18 +6,18 @@ console.log($logEntries);
 //각각
 $addBtn.addEventListener(`click`,e=>{
 //연산 처리 함수
-console.log(e.target.id);
- calculate(e.target.id);
+// console.log(e.target.id);
+ calculate(ADD);
 });
 $subtractBtn.addEventListener(`click`,e=>{
   //연산 처리 함수
- calculate(e.target.id);
+ calculate(SUB);
 });
 $multiplyBtn.addEventListener(`click`,e=>{
 //연산 처리 함수
-calculate(e.target.id);
+calculate(MUL);
 });
 $divideBtn.addEventListener(`click`,e=>{
 //연산 처리 함수
-calculate(e.target.id);
+calculate(DIV);
 });
