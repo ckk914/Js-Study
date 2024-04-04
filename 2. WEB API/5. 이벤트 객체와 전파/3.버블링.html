@@ -44,14 +44,15 @@
         document.querySelector('.root').onclick = e => alert('root');
         document.querySelector('.parent').onclick = e => alert('parent');
         document.querySelector('.child').onclick = e => {
+            //버블링 방지: 이벤트 전파 중단
           e.stopPropagation();
             alert('child');
         };
 
-        //버블링 방지: 이벤트 전파 중단
         
         document.querySelector('.target').onclick = e => {
-          e.stopPropagation();
+              //버블링 방지: 이벤트 전파 중단
+            e.stopPropagation();
           alert('target');
         };
 
