@@ -163,7 +163,7 @@
       }
 
       // 영화 API를 호출하는 함수
-      function fetchMovies(condition='download_count') {
+      function fetchMovies(condition='download_count') {        // 기본값: download_count
 
         fetch(`https://yts.mx/api/v2/list_movies.json?sort_by=${condition}`)
           .then(response => response.json())
