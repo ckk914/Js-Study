@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="video">
+        <iframe src="https://www.youtube.com/embed/phuiiNCxRMg" title="aespa 에스파 &#39;Supernova&#39; MV" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <div>
+        댓글제목: <input type="text" id="author">
+    </div>
+    <div>
+        댓글내용: <textarea id="content"></textarea>
+    </div>
+    <div>
+        <button id="add">등록</button>
+    </div>
+
+    <script>
+
+        const url = `http://localhost:8383/api/v1/replies`;
+        function get(url) {
+            const xhr = new XMLHttpRequest();
+            xhr.open(`GET`, url);
+            xhr.send(); //요청
+
+            xhr.onload = e => {
+                const replies = JSON.parse(xhr.response);
+                console.log(xhr.response);
+            };
+        }
+
+        function post(url, payload) {
+            const xhr = new XMLHttpRequest();  //⭐️ 
+            xhr.open(`POST`, url);
+
+            xhr.setRequestHeader(`content-type`, `application/json`);  //타입 명시
+            xhr.send(JSON.stringify(payload));                                      //요청
+
+            xhr.onload = e => {
+                const replies = JSON.parse(xhr.response);
+                console.log(replies);
+            };
+        }
+        get(`${url}/100`);
+
+     // 댓글 등록 이벤트
+     document.getElementById('add').onclick = e => {
+      post(url, {
+        text: document.getElementById('content').value,
+        author: document.getElementById('author').value,
+        bno: 100
+      });
+    };
+
+    </script>
+</body>
+
+</html>

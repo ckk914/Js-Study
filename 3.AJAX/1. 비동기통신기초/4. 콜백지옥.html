@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="show">서버 요청~!</button>
+
+    <script>
+        function get(url, callback) {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', url);
+            xhr.send();
+
+            xhr.onload = e => {         //응답 받는 곳
+                const response = JSON.parse(xhr.response);
+                callback(response);  //callback으로 보냄.
+            };
+        }
+        document.getElementById(`show`).addEventListener(`click`, e => {
+            //버튼을 클릭하면 
+            // 1. 특정 회원을 조회하여 
+            //해당 회원이 쓴
+            // 2.  글의 목록을 조회한 후
+            //해당 글의 
+            // 3. 댓글들을 조회한다.
+            const url = 'https://jsonplaceholder.typicode.com';
+            
+            // const x = get();
+            // const y= get();
+            //비동기임. 순서 할당이 필요한데, 콜백으로 해야한다~!
+            get(`${url}/users`, (response) => {
+                const userId = response[1].id;
+                get(`${url}/users/${userId}/posts`, (response) => {
+                    const postId = response[2].id;
+                    get(`${url}/posts/${postId}/comments`, (response) => {
+                        console.log(response);
+                    }); // 해당 글의 댓글목록요청
+                });  //해당 회원이 쓴 글 목록 요청
+            });            //회원 정보 조회
+
+            // get(`${url}/posts/${postId}.comments`);  //해당 글의 댓글 목록 요청
+        });
+    </script>
+</body>
+
+</html>
