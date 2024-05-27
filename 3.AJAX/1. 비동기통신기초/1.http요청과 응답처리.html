@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="video">
+        <iframe width="640" height="360" src="https://www.youtube.com/embed/phuiiNCxRMg"
+            title="aespa 에스파 &#39;Supernova&#39; MV" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
+    <button id="load">서버에서 정보 불러오기</button>
+
+    <!-- 댓글 부분 -->
+    <ul id="content"></ul> 
+
+    <script>
+        // 버튼 클릭 이벤트
+        document.getElementById('load').addEventListener('click', e => {
+            // 서버에 비동기 통신 요청을 보내야 함.
+            // 게시물 정보를 가져오기
+            console.log('click!!');
+
+            const xhr = new XMLHttpRequest();
+            // 요청 방식과 요청 URL을 적음
+            const url = 'https://jsonplaceholder.typicode.com';
+            xhr.open('GET', `${url}/users/1/posts`);
+
+            // 요청 전송
+            xhr.send();
+
+            // 응답 정보 확인
+            xhr.onload = e => {
+                // 서버가 응답한 데이터는 JSON이라는 문자열 포맷의 데이터다.
+                // JSON은 자바스크립트가 아니다.
+                // JSON -> JS로 변환해야 함.
+                // JSON.parse() :  JSON -> JS
+                // JSON.stringify() : JS -> JSON
+                const response = xhr.response;
+                const boardList = JSON.parse(response);
+                console.log(boardList[0]);
+
+                // 화면에 렌더링
+                const $ul = document.getElementById('content');
+                let liTag = '';
+
+                boardList.forEach(b => {
+                    liTag += `
+            <li>
+              #글번호: ${b.id}, 제목: ${b.title}, 작성자id: ${b.userId}
+            </li>
+          `;
+                });
+
+                $ul.innerHTML = liTag;
+
+            };
+        });
+    </script>
+
+</body>
+
+</html>
