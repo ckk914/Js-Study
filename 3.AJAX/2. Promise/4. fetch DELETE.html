@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="remove">삭제</button>
+    <script>
+        document.getElementById(`remove`).onclick = e => {
+            const rno = 5009;
+            fetch(`http://localhost:8383/api/v1/replies/${rno}`, {
+                method: `DELETE`   //기본값은 get 
+            })
+                .then(res => res.json())
+                .then(json => {
+                    console.log(json);
+                });
+        };
+    </script>
+</body>
+
+</html>
