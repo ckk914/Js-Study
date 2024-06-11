@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="search">
+    <input type="text" id="account">
+
+    <script>
+        const $search = document.getElementById(`search`);
+        const $account = document.getElementById(`account`);
+
+        const showResult = (value) => {
+            console.log(`입력값:${value}`);
+        }
+        // let timer;
+        // let timer2;
+
+        //디바운싱의 함수 정의 : 계속 입력한 것을 지우면 계속 갱신이아닌 약간 지연 후 반영하기~!⭐️ㅕ샤ㅣ.
+        function debounce(callback, wait) {
+            let timer;
+
+            return (...value) => {
+                clearTimeout(timer);
+
+                timer = setTimeout(() => {
+                    callback(value);
+                }, wait);
+            };
+
+        }
+        const debounceClosure1 = debounce(showResult, 500);
+        $search.addEventListener(`keyup`, e => {
+
+            //입력값 가져오기
+            const value = $search.value;
+
+            // clearTimeout(timer); // 기존 타이머 제거
+            // timer = setTimeout(()=>{ showResult(value); },500);  
+
+            debounceClosure1(value);
+        });
+        const debounceClosure2 = debounce(showResult, 500);
+        $account.addEventListener(`keyup`, e => {
+
+            //입력값 가져오기
+            const value = $account.value;
+
+            // clearTimeout(timer2); // 기존 타이머 제거
+            // timer2 = setTimeout(() => { showResult(value); }, 500);
+
+            debounceClosure2(value);
+        });
+
+    </script>
+</body>
+
+</html>
