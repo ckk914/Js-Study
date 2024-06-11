@@ -1,3 +1,4 @@
+//# li태그를 렌더링
 class ProductItem {
   constructor(prod) {
     this.prod = prod;
@@ -17,6 +18,12 @@ class ProductItem {
           </div>
         </div>
       `;
+
+    const $btn = $prodLi.querySelector("button");
+    $btn.addEventListener("click", (e) => {
+      console.log(title);
+      console.log("버튼 클릭!");
+    });
     return $prodLi;
   }
 }
